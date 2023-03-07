@@ -12,7 +12,7 @@ title: What Do We Have
   </tr>
 </thead>
 {% for resource in site.resources %}
-  <h2><a href="{{ resource.resourcelink }">{{ resource.resourcename }}</a> </h2>
+  <h2><a href="{{ resource.resourcelink }}">{{ resource.resourcename }}</a> </h2>
   <p>{{ resource.content | markdownify }}</p>
 {% endfor %}
 
@@ -27,7 +27,7 @@ title: What Do We Have
                    {{ resource.content | markdownify}}
                 </td>
                 <td class="tg-0lax">
-                    <a href="{{ resource.resourcelink }">
+                    <a href="{{ resource.resourcelink }}">
                         {{ resource.resourcelink }}
                     </a>
                 </td>
