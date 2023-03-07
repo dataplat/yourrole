@@ -13,17 +13,17 @@ title: What Do We Have
 </thead>
 <tbody>
   <tr>
-      {% for post in site.pages %}
+      {% for page in site.pages %}
             <tr>
                 <td class="tg-0lax">
-                        {{ post.name}}
+                        {{ page.name}}
                 </td>
                 <td class="tg-0lax">
-                   {{ post.description}}
+                   {{ page.description}}
                 </td>
                 <td class="tg-0lax">
                     <a href="{{ post.link}}">
-                        {{ post.link }}
+                        {{ page.link }}
                     </a>
                 </td>
               </tr>
