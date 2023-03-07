@@ -33,8 +33,8 @@ jobs:
         # get the temp file contents - I do this so I dont lose anything
         $file = Get-Content ./_resources/temp.txt -Raw
         # parse the issue
-        $regexResult = [regex]::Matches($file, '(?ms)fullname\n\n(?<fullname>.*)\n\n### link\n\n(?<link>.*)\n\n### description\n\n(?<description>.*)
-        \n')
+        $regexResult = [regex]::Matches($file, '(?ms)fullname\n\n(?<fullname>.*),*### link\n\n(?<link>.*)\n\n### description\n\n(?<description>.*)')
+
         # create an object
         $resourceObject = [PSCustomObject]@{
             name =  $regexResult[0].Groups['fullname'].Value
