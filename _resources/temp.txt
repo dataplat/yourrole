@@ -1,11 +1,11 @@
 ### fullname
 
- Finding Data Friends
+New Stars of Data
 
 ### link
 
-http://findingdatafriends.com
+https://newstarsofdata.com
 
 ### description
 
-A podcast hosted by Jess Pomfret and Ben Weissman to introduce the Data Platform Community
+https://newstarsofdata.com
