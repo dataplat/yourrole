@@ -1,0 +1,11 @@
+### fullname
+
+Finding Data Friends
+
+### link
+
+http://findingdatafriends.com
+
+### description
+
+A podcast hosted by Jess Pomfret and Ben Weissman to introduce the Data Platform Community
