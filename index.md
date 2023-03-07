@@ -3,14 +3,14 @@ layout: home
 title: What Do We Have
 ---
 
-<font family="Arial">
+ 
 <center><h2>Find your non-passive role in the Data Platform Community</h2>
 
 <p>A simple repository to serve as a resource for friends from the data platform community so they can find opportunities and inspirations to be more active community members.
 
 <p>Rob Sewell and Ben Weissman @SQLDBAWithABeard @bweissman
 <p><b>To add your own resources, check out <a href="https://github.com/dataplat/yourrole">https://github.com/dataplat/yourrole</a><p>
-</font>
+ 
 
 <table class="tg">
 <thead>
