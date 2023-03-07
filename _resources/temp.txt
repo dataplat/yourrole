@@ -1,11 +1,11 @@
 ### fullname
 
-Ben Being Awesome
+New Stars of Data
 
 ### link
 
-https:bweissman.de
+https://newstarsofdata.com
 
 ### description
 
-This is Ben
+An initiative to help new speakers get started in the Data Community!
