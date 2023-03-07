@@ -1,0 +1,87 @@
+name: Add a new speaker json
+
+on: 
+ issues:
+   types:
+     - "opened"
+
+jobs:
+  addNewSpeaker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        ref: main
+        token: ${{ secrets.REPO_TOKEN }}
+    - name: Add comment to the issue
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          Hi @${{ github.event.issue.user.login }},
+          Thank you so much for your Speaker submission.
+          The Action should be running now and adding it to the webpage. It should should update here.
+          If it doesnt - get in touch with Rob on Twittter https://twitter.com/sqldbawithbeard
+    - name: Get Speaker Information to file
+      run: |
+        Write-Host "What do we have?"
+        # gci -recurse = this is for troubleshooting because paths are hard
+        $IssueBody =  "${{ github.event.issue.body }}"
+        # Write-Host $IssueBody 
+        $IssueBody | Out-File speakers/temp.txt
+        # get the temp file contents - I do this so I dont lose anything
+        $file = Get-Content ./speakers/temp.txt -Raw
+        # parse the issue
+        $regexResult = [regex]::Matches($file, '(?ms)fullname\n\n(?<fullname>.*)\n\n### topics\n\n(?<topics>.*)\n\n### regions\n\n(?<regions>.*)\n\n### Sessionize\n\n(?<Sessionize>.*)\n\n### language\n\n(?<language>.*)\n')
+        # create an object
+        $speakerObject = [PSCustomObject]@{
+            name =  $regexResult[0].Groups['fullname'].Value
+            topics = $regexResult[0].Groups['topics'].Value
+            regions = $regexResult[0].Groups['regions'].Value
+            sessionize = $regexResult[0].Groups['Sessionize'].Value
+            language = $regexResult[0].Groups['language'].Value
+        }
+        #save it to a file
+        $speakerFileName = $SpeakerObject.name -replace ' ', '-' -replace '''','-' -replace '/','-' -replace '\\','-' -replace ':','-' -replace '\*','-' -replace '\?','-' -replace '"','-' -replace '\|','-'
+        $filePath = './speakers/{0}.json' -f $speakerFileName
+        $SpeakerObject |ConvertTo-Json | Out-FIle -FilePath $filePath
+        $speakerFileName | OUt-File ./speakers/list.txt -Append
+      shell: pwsh  
+    - name: Add another comment to the issue
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        body: |
+          The Speaker Json has been added https://github.com/dataplat/DataSpeakers/tree/main/speakers
+    - name: Add & Commit
+      uses: EndBug/add-and-commit@v9.1.1
+      with:
+        author_name: Beardy McBeardFace
+        author_email: mrrobsewell@outlook.com
+        message: 'The Beard says hooray we have another speaker @${{ github.event.issue.user.login }} - This is an automated message'
+  
+#  createSpeakerListJson:
+#    needs: addNewSpeaker
+#    uses: dataplat/DataSpeakers/.github/workflows/wesbiteFile.yml@main
+#    secrets:
+#      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+# painful   
+# https://github.community/t/reusable-workflows-secrets-and-environments/203695/18
+  closeIssue:
+     needs: [addNewSpeaker]
+     runs-on: ubuntu-latest
+     steps:
+     - name: Close Issue
+       uses: peter-evans/close-issue@v2
+       with:
+         issue-number: ${{ github.event.issue.number }}
+         comment: |
+           Hey @${{ github.event.issue.user.login }},
+           Closing this issue now that the Action has run successfully.
+           Thank you so much for adding your information to the list.
+           It will be active on callfordataspeakers.com shortly.
+           Please share on social media.
+           Love and Hugs
+           Rob and Daniel
+           @SqlDbaWithABeard @dhmacher
