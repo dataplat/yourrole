@@ -11,11 +11,9 @@ title: What Do We Have
     <th class="tg-lhfm">Link</th>
   </tr>
 </thead>
-{% for resource in site.resources %}
-  <h2><a href="{{ resource.resourcelink }}">{{ resource.resourcename }}</a> </h2>
-  <p>{{ resource.content | markdownify }}</p>
-{% endfor %}
+<h2> A Heading with words that we should have</>
 
+This is the place where you can find stuff that is cool and will help you ta have some thigns that Rob cant write right now because his brain isnt working very well and the creativity has gone away but at least there are some words here that people can see for a moemnt so we see what it looks like
 <tbody>
   <tr>
       {% for resource in site.resources %}
