@@ -15,9 +15,9 @@ title: What Do We Have
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-lhfm">Name</th>
-    <th class="tg-lhfm">Description</th>
-    <th class="tg-lhfm">Link</th>
+    <th class="tg-lhfm"><b>Name</th>
+    <th class="tg-lhfm"><b>Description</th>
+    <th class="tg-lhfm"><b>Link</th>
   </tr>
 </thead>
 
