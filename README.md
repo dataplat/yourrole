@@ -35,8 +35,6 @@ Fill in the details, the title can be anything that you like
 
 Thats it, then press Submit new issue and the automation will do its thing
 
-![new resource info](images/filledinsessions.png)
-
 ## To remove your resource
 
 Delete your resourcename.md file and ask for the website workflow to be run
