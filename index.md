@@ -11,9 +11,14 @@ title: What Do We Have
     <th class="tg-lhfm">Link</th>
   </tr>
 </thead>
-<h2> A Heading with words that we should have</>
+<center><h2>Find your non-passive role in the Data Platform Community</h2>
 
-This is the place where you can find stuff that is cool and will help you ta have some thigns that Rob cant write right now because his brain isnt working very well and the creativity has gone away but at least there are some words here that people can see for a moemnt so we see what it looks like
+<p>A simple repository to serve as a resource for friends from the data platform community so they can find opportunities and inspirations to be more active community members.
+
+<p>Rob Sewell and Ben Weissman @SQLDBAWithABeard @bweissman
+<p><b>To add your own resources, check out <a href="https://github.com/dataplat/yourrole">https://github.com/dataplat/yourrole</a><p>
+
+
 <tbody>
   <tr>
       {% for resource in site.resources %}
