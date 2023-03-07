@@ -7,3 +7,5 @@ plugins:
   - jekyll-redirect-from
 include:
   - _pages
+collections:
+  - resources
