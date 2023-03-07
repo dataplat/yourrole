@@ -32,7 +32,7 @@ title: What Do We Have
                     </a>
                 </td>
               </tr>
-
+        {% endfor %}
   </tr>
 </tbody>
 </table>
