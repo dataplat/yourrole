@@ -10,7 +10,7 @@ title: What Do We Have
 
 <p>Rob Sewell and Ben Weissman @SQLDBAWithABeard @bweissman
 <p><b>To add your own resources, check out <a href="https://github.com/dataplat/yourrole">https://github.com/dataplat/yourrole</a><p>
-
+</font>
 
 <table class="tg">
 <thead>
