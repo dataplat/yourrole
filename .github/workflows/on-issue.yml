@@ -28,7 +28,7 @@ jobs:
         Write-Host "What do we have?"
         # gci -recurse = this is for troubleshooting because paths are hard
         $IssueBody =  "${{ github.event.issue.body }}"
-        # Write-Host $IssueBody
+        Write-Host $IssueBody
         $IssueBody | Out-File _resources/temp.txt
         # get the temp file contents - I do this so I dont lose anything
         $file = Get-Content ./_resources/temp.txt -Raw
