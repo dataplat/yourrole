@@ -1,0 +1,41 @@
+name: Add a new resource
+description: Add information about a resource
+body:
+  - type: markdown
+    attributes:
+      value: |
+       Please follow the instructions to create a new resources entry.
+       We wil display this on the website
+
+       # Code of conduct and expectations
+
+       By submitting, you are agreeing to our code of conduct
+       https://github.com/dataplat/yourrole/blob/main/CODE_OF_CONDUCT.md
+
+       If Rob is notified that you have broken the Code of Conduct at any event. He WILL remove you from this list.
+
+
+  - type: input
+    id: name
+    attributes:
+      label: fullname
+      description: "What is the name of the resource"
+      placeholder: "Bens fancy website about VBS"
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: link
+      description: "What is the link to the resource"
+      placeholder: "https://bweissman.de"
+    validations:
+      required: true
+  - type: input
+    id: description
+    attributes:
+      label: description
+      description: "What is the description of the resource"
+      placeholder: "This is a fancy website about VBS"
+    validations:
+      required: true

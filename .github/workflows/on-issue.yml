@@ -1,6 +1,6 @@
 name: Add a new speaker json
 
-on: 
+on:
  issues:
    types:
      - "opened"
@@ -20,53 +20,58 @@ jobs:
         issue-number: ${{ github.event.issue.number }}
         body: |
           Hi @${{ github.event.issue.user.login }},
-          Thank you so much for your Speaker submission.
-          The Action should be running now and adding it to the webpage. It should should update here.
-          If it doesnt - get in touch with Rob on Twittter https://twitter.com/sqldbawithbeard
+          Thank you so much for your Resource submission.
+          The Action should be running now and adding it to the webpage. It should update here.
+          If it doesnt - get in touch with Rob or Ben
     - name: Get Speaker Information to file
       run: |
         Write-Host "What do we have?"
         # gci -recurse = this is for troubleshooting because paths are hard
         $IssueBody =  "${{ github.event.issue.body }}"
-        # Write-Host $IssueBody 
-        $IssueBody | Out-File speakers/temp.txt
+        # Write-Host $IssueBody
+        $IssueBody | Out-File _resources/temp.txt
         # get the temp file contents - I do this so I dont lose anything
-        $file = Get-Content ./speakers/temp.txt -Raw
+        $file = Get-Content ./_resources/temp.txt -Raw
         # parse the issue
-        $regexResult = [regex]::Matches($file, '(?ms)fullname\n\n(?<fullname>.*)\n\n### topics\n\n(?<topics>.*)\n\n### regions\n\n(?<regions>.*)\n\n### Sessionize\n\n(?<Sessionize>.*)\n\n### language\n\n(?<language>.*)\n')
+        $regexResult = [regex]::Matches($file, '(?ms)fullname\n\n(?<fullname>.*)\n\n### link\n\n(?<link>.*)\n\n### description\n\n(?<description>.*)
+        \n')
         # create an object
-        $speakerObject = [PSCustomObject]@{
+        $resourceObject = [PSCustomObject]@{
             name =  $regexResult[0].Groups['fullname'].Value
-            topics = $regexResult[0].Groups['topics'].Value
-            regions = $regexResult[0].Groups['regions'].Value
-            sessionize = $regexResult[0].Groups['Sessionize'].Value
-            language = $regexResult[0].Groups['language'].Value
+            link = $regexResult[0].Groups['link'].Value
+            description = $regexResult[0].Groups['description'].Value
         }
         #save it to a file
-        $speakerFileName = $SpeakerObject.name -replace ' ', '-' -replace '''','-' -replace '/','-' -replace '\\','-' -replace ':','-' -replace '\*','-' -replace '\?','-' -replace '"','-' -replace '\|','-'
-        $filePath = './speakers/{0}.json' -f $speakerFileName
-        $SpeakerObject |ConvertTo-Json | Out-FIle -FilePath $filePath
-        $speakerFileName | OUt-File ./speakers/list.txt -Append
-      shell: pwsh  
+        $resourceFileName = $resourceObject.name -replace ' ', '-' -replace '''','-' -replace '/','-' -replace '\\','-' -replace ':','-' -replace '\*','-' -replace '\?','-' -replace '"','-' -replace '\|','-'
+        @"
+        ---
+        layout: home
+        sitemap: false
+        resourcename: {0}
+        resourcelink: {1}
+        ---
+        {2}
+        "@ -f $resourceObject.name, $resourceObject.link, $resourceObject.description | Out-File ./_resources/$resourceFileName.md
+      shell: pwsh
     - name: Add another comment to the issue
       uses: peter-evans/create-or-update-comment@v2
       with:
         issue-number: ${{ github.event.issue.number }}
         body: |
-          The Speaker Json has been added https://github.com/dataplat/DataSpeakers/tree/main/speakers
+          The Resource md file has been added to https://github.com/dataplat/yourrole/tree/main/_resources
     - name: Add & Commit
       uses: EndBug/add-and-commit@v9.1.1
       with:
         author_name: Beardy McBeardFace
         author_email: mrrobsewell@outlook.com
-        message: 'The Beard says hooray we have another speaker @${{ github.event.issue.user.login }} - This is an automated message'
-  
+        message: 'The Beard says hooray we have another resource @${{ github.event.issue.user.login }} - This is an automated message'
+
 #  createSpeakerListJson:
 #    needs: addNewSpeaker
 #    uses: dataplat/DataSpeakers/.github/workflows/wesbiteFile.yml@main
 #    secrets:
 #      REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-# painful   
+# painful
 # https://github.community/t/reusable-workflows-secrets-and-environments/203695/18
   closeIssue:
      needs: [addNewSpeaker]
@@ -80,8 +85,8 @@ jobs:
            Hey @${{ github.event.issue.user.login }},
            Closing this issue now that the Action has run successfully.
            Thank you so much for adding your information to the list.
-           It will be active on callfordataspeakers.com shortly.
+           It will be active on the webpage shortly.
            Please share on social media.
            Love and Hugs
-           Rob and Daniel
-           @SqlDbaWithABeard @dhmacher
+           Rob and Ben
+           @SqlDbaWithABeard @bweissman
