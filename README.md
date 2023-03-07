@@ -1,4 +1,4 @@
-# A list of Speakers who provide training days
+# A list of Resources to help being a more non-passive community member
 A simple repository to serve as a resource for event owners so that they can find speakers who can do training days. This has been identified as a gap in knowledge for event owners and reduces the diversity and growth of the Data training days (or pre-cons) pool. Of course, the famous names will already be approached and will provide excellent training days which will sell tickets and bring folks in to events. Hopefully, the web-page served by this repository will enable event owners to find and approach other speakers as well and then everyone will benefit.  
   
 > "I would particularly like this to be a resource that amplifies the less well known, newer speakers in our community."  
