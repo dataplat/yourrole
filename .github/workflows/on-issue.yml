@@ -42,7 +42,7 @@ jobs:
             description = $regexResult[0].Groups['description'].Value
         }
         #save it to a file
-        $resourceFileName = $resourceObject.name -replace ' ', '-' -replace '''','-' -replace '/','-' -replace '\\','-' -replace ':','-' -replace '\*','-' -replace '\?','-' -replace '"','-' -replace '\|','-'
+        $resourceFileName = $resourceObject.name -replace ' ', '-' -replace '''','-' -replace '/','-' -replace '\\','-' -replace ':','-' -replace '\*','-' -replace '\?','-' -replace '"','-' -replace '\|','-' -replace '\n',''
         @"
         ---
         layout: home
@@ -51,7 +51,7 @@ jobs:
         resourcelink: {1}
         ---
         {2}
-        "@ -f $resourceObject.name, $resourceObject.link, $resourceObject.description | Out-File ./_resources/$resourceFileName.md
+        "@ -f ($resourceObject.name -replace '\n',''), $resourceObject.link, $resourceObject.description | Out-File ./_resources/$resourceFileName.md
       shell: pwsh
     - name: Add another comment to the issue
       uses: peter-evans/create-or-update-comment@v2
