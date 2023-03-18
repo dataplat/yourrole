@@ -1,11 +1,11 @@
 ### fullname
 
-New Stars of Data
+Data on Rails
 
 ### link
 
-https://newstarsofdata.com
+https://dataonrailsblog.wordpress.com/2023/01/26/introducing-data-on-rails-2/
 
 ### description
 
-https://newstarsofdata.com
+Blog platform for new technical bloggers to grow their personal brand through blogging. Email kristyna@dataonwheels.com for info on how to join the team.
