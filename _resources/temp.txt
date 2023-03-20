@@ -1,11 +1,11 @@
 ### fullname
 
-WITspiration
+Speaking Mentors
 
 ### link
 
-https://github.com/DatabaseSuperhero/WITspiration
+http://www.speakingmentors.com/
 
 ### description
 
-To inspire and empower women in tech, starting with the data platform community, to thrive in their careers through community based mentorship.
+A list of people who enjoy mentoring new speakers for free
